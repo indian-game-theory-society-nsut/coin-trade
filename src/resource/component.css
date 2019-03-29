@@ -1,0 +1,53 @@
+#parent{
+  display: flex !important;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.card {
+  min-width: 20em;
+  padding: "0 30px";
+  margin: 1%;
+}
+
+.countdown{
+  font-size: 6.5rem;
+  text-align: center;
+}
+
+.register{
+  font-size: 3rem !important;
+  text-align: center;
+  display: block !important;
+  margin: 0 auto !important;
+  color: #f50057;
+  font-family: auto;
+}
+@media only screen and (max-width: 600px)  {
+
+  .register{
+  font-size: 2rem !important;text-align: center;
+  display: block !important;
+  margin: 0 auto !important;
+  color: #f50057;
+  font-family: auto;
+  }
+  .countdown{
+  font-size: 2.75rem;
+  text-align: center;
+}
+
+.container{
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 35% !important;
+}
+}
+
+.container{
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 10%;
+}
