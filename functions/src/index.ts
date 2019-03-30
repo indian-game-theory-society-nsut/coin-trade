@@ -64,6 +64,8 @@ export const transact = functions.firestore.document('tokens/{tokenId}')
     const replier = newValue!.replier;
     const user1 = db.collection("users").doc(sender.user_id);
     const user2 = db.collection("users").doc(replier.user_id);
+    if (sender.val === -1 || replier.val === -1)
+      return;
     const c = sender.val.toString() + replier.val.toString();
     console.log(c);
     return token.delete()
@@ -95,6 +97,7 @@ export const transact = functions.firestore.document('tokens/{tokenId}')
             }
             if (c === "00") {
               userData.cheat += 1;
+              newCoins -= 10;
               cheat += 1;
             }
             let temp = { coins: newCoins, [replier.user_id]: userData, cheat: cheat, cooperate: cooperate };
@@ -128,6 +131,7 @@ export const transact = functions.firestore.document('tokens/{tokenId}')
               }
               if (c === "00") {
                 userData.cheat += 1;
+                newCoins -= 10;
                 cheat += 1;
               }
               let temp = { coins: newCoins, [sender.user_id]: userData, cheat: cheat, cooperate: cooperate };

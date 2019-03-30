@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "coin-trade-59f69"
+    "default": "coin-trade-59f69",
+    "staging": "coin-trade-test"
   }
 }

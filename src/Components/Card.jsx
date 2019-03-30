@@ -73,28 +73,19 @@ class SimpleCard extends React.Component {
       })
     }
     else {
-      this.setState({ process: true });
-      let flag = false;
-      setTimeout(() => {
-        if (this.state.request) {
-          flag = true;
-          this.setState({ process: false, request: true })
+      let uid = this.props.pid + this.props.id;
+      if (this.props.id > this.props.pid)
+        uid = this.props.id + this.props.pid;
+      token.doc(uid).set({
+        sender: {
+          user_id: this.props.pid,
+          val: value
+        },
+        replier: {
+          user_id: this.props.id,
+          val: -1
         }
-        if (!flag) {
-          this.setState({ process: false });
-          token.add({
-            sender: {
-              user_id: this.props.pid,
-              val: value
-            },
-            replier: {
-              user_id: this.props.id,
-              val: -1
-            }
-          });
-        }
-      }, 1500);
-
+      });
     }
   }
 
@@ -160,7 +151,6 @@ class SimpleCard extends React.Component {
             </Typography>
             </CardContent>
           )
-
           ))}
       </Card>
     );

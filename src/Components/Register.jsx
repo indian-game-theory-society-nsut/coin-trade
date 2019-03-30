@@ -78,6 +78,9 @@ class Register extends React.Component {
         </Button>
                 </div>)
           )}
+        <div style={{ margin: "5  %" }}>
+          Sun, 31 March, 6PM
+        </div>
       </div>
     );
   }
