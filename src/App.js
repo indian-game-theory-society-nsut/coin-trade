@@ -38,7 +38,7 @@ class App extends Component {
 
   componentDidMount() {
     const register = new Date("Mar 31, 2019, 17:55:00").getTime();
-    const start = new Date("Mar 30, 2019, 18:00:01").getTime();
+    const start = new Date("Mar 31, 2019, 18:00:01").getTime();
     const end = new Date("Mar 31, 2019, 18:15:00").getTime();
     this.countDown = setInterval(() => {
       let now = new Date().getTime();
