@@ -27,18 +27,19 @@ class App extends Component {
     count: false,
     start: false,
     end: false,
-    coins: 0
+    coins: 0,
+    cheat: 0,
+    cooperate: 0
   }
 
-  setCoins = (coin) => {
-    this.setState({ coins: coin });
-    console.log(this.state);
+  setCoins = (coin, cheat, cooperate) => {
+    this.setState({ coins: coin, cheat: cheat, cooperate: cooperate });
   }
 
   componentDidMount() {
     const register = new Date("Mar 31, 2019, 17:55:00").getTime();
     const start = new Date("Mar 31, 2019, 18:00:01").getTime();
-    const end = new Date("Mar 31, 2019, 18:15:01").getTime();
+    const end = new Date("Mar 31, 2019, 18:15:00").getTime();
     this.countDown = setInterval(() => {
       let now = new Date().getTime();
       let distance1 = register - now;
@@ -60,7 +61,6 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    console.log("called");
   }
 
   render() {
@@ -69,7 +69,7 @@ class App extends Component {
         <div>
           {this.state.end ? (
             <div>
-              <Route path="/end" render={(props) => <End {...props} coins={this.state.coins} />}></Route>
+              <Route path="/end" render={(props) => <End {...props} coins={this.state.coins} cheat={this.state.cheat} cooperate={this.state.cooperate} />}></Route>
               <Route exact path="/rules" render={() => (<Redirect to="/end" />)} />
               <Route exact path="/register" render={() => (<Redirect to="/end" />)} />
               <Route exact path="/main" render={() => (<Redirect to="/end" />)} />

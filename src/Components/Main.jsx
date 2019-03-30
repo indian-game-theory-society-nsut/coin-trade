@@ -13,6 +13,8 @@ class App extends Component {
     userVal: {},
     cards: {},
     coin: 0,
+    cheat: 0,
+    cooperate: 0,
     room_id: -1,
     allowed: false,
     min: 0,
@@ -24,14 +26,13 @@ class App extends Component {
       db.collection("users").doc(this.state.userVal.uid).onSnapshot(query => {
         let q = query.data();
         for (const key in q) {
-          if (key !== "room_id" && key !== "name" && key !== "coins" && key !== "email" && key !== "no") {
+          if (key !== "room_id" && key !== "name" && key !== "coins" && key !== "email" && key !== "no" && key !== "cooperate" && key !== "coins") {
             let temp = this.state.cards;
             temp[key] = q[key];
             this.setState({ cards: temp });
           }
         }
-        this.setState({ room_id: q.room_id, coin: q.coins });
-        this.props.setCoins(this.state.coin);
+        this.setState({ room_id: q.room_id, coin: q.coins, cheat: q.cheat, cooperate: q.cooperate });
         if (this.state.room_id >= 0)
           this.setState({ allowed: true });
       })
@@ -65,7 +66,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    this.props.setCoins(this.state.coin);
+    this.props.setCoins(this.state.coin, this.state.cheat, this.state.cooperate);
   }
 
   render() {

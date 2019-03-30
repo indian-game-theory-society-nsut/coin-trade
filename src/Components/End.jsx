@@ -13,6 +13,12 @@ class End extends Component {
           Total Coins : {this.props.coins}
         </div>
         <div>
+          Total Cheats : {this.props.cheat}
+        </div>
+        <div>
+          Total Cooperates : {this.props.cooperate}
+        </div>
+        <div>
           Results will be announced soon
         </div>
       </div>
