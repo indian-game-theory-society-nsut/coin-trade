@@ -3,6 +3,7 @@ import firebase from "firebase";
 import Nav from './Nav';
 import Cards from './Cards';
 import '../firebase'
+import '../resource/component.css'
 
 var db = firebase.firestore();
 
@@ -13,7 +14,9 @@ class App extends Component {
     cards: {},
     coin: 0,
     room_id: -1,
-    allowed: false
+    allowed: false,
+    min: 0,
+    sec: 0
   };
   newLogin = (user) => {
     if (user) {
@@ -43,6 +46,24 @@ class App extends Component {
     firebase.auth().onAuthStateChanged(this.newLogin);
   }
 
+  componentDidMount() {
+    const countDownDate = new Date("Mar 31, 2019, 18:15:00").getTime();
+    this.countDown = setInterval(() => {
+      let now = new Date().getTime();
+      let distance = countDownDate - now;
+
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+        clearInterval(this.countDown);
+      }
+
+      this.setState({ min: minutes, sec: seconds });
+
+    }, 1000);
+  }
+
   componentWillUnmount() {
     this.props.setCoins(this.state.coin);
   }
@@ -59,6 +80,12 @@ class App extends Component {
               </div>
             )
         }
+        <div style={{ margin: "10%" }}>
+        </div>
+        <div>Event ends in</div>
+        <div style={{ color: "#f50057" }}>
+          {this.state.min} min: {this.state.sec} sec
+      </div>
       </div>
     );
   }

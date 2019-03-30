@@ -24,4 +24,3 @@ yarn-error.log*
 
 #secret
 /src/firebase.js
-functions/coin-trade-59f69-firebase-adminsdk-r3vwe-c28f0e72ef.json
