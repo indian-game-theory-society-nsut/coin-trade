@@ -11,7 +11,7 @@ class Register extends React.Component {
   }
 
   componentDidMount() {
-    const countDownDate = new Date("Mar 31, 2019, 18:00:01").getTime();
+    const countDownDate = new Date("Mar 31, 2019, 17:57:01").getTime();
     this.countDown = setInterval(() => {
       let now = new Date().getTime();
       let distance = countDownDate - now;
@@ -21,12 +21,12 @@ class Register extends React.Component {
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      this.setState({ days: days, hrs: hours, min: minutes, sec: seconds });
-
       if (distance < 0) {
         this.setState({ sec: -1 });
         clearInterval(this.countDown);
       }
+
+      this.setState({ days: days, hrs: hours, min: minutes, sec: seconds });
 
     }, 1000);
   }
@@ -41,6 +41,7 @@ class Register extends React.Component {
         <div className="register">
           Registration Over
         </div>
+        Rules for the event are available <a href="https://drive.google.com/open?id=1sieaZBGtsu2t7awNLo5PsuNP2litJyk9" target="_blank">here</a>
       </div>
     )
   }
