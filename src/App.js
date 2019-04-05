@@ -37,9 +37,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const register = new Date("Mar 31, 2019, 17:30:00").getTime();
-    const start = new Date("Mar 31, 2019, 17:57:01").getTime();
-    const end = new Date("Mar 31, 2019, 18:15:00").getTime();
+    const register = new Date("Apr 7, 2019, 17:30:00").getTime();
+    const start = new Date("Apr 7, 2019, 17:57:01").getTime();
+    const end = new Date("Apr 7, 2019, 18:15:00").getTime();
     this.countDown = setInterval(() => {
       let now = new Date().getTime();
       let distance1 = register - now;

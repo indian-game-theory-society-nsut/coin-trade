@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "coin-trade-59f69",
-    "staging": "coin-trade-test"
+    "staging": "coin-trade-test",
+    "Round2": "igts-nsut"
   }
 }
