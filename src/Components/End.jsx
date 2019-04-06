@@ -10,13 +10,7 @@ class End extends Component {
     return (
       <div className="register">
         <div>
-          Total Coins : {this.props.coins}
-        </div>
-        <div>
-          Total Cheats : {this.props.cheat}
-        </div>
-        <div>
-          Total Cooperates : {this.props.cooperate}
+          Total Score : {this.props.coins}
         </div>
         <div>
           Results will be announced soon

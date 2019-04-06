@@ -43,7 +43,11 @@ class SimpleCard extends React.Component {
 
   flipState = (val) => {
     if (this.props.data[this.props.id] !== undefined) {
-      if (this.props.data[this.props.id].cheat + this.props.data[this.props.id].cooperate >= 5) {
+      let cnt = 0;
+      for (let i = 0; i < 4; i++) {
+        cnt += this.props.data[this.props.id].data[i];
+      }
+      if (cnt >= 5) {
         this.setState({ allowed: false });
       }
     }
@@ -94,20 +98,26 @@ class SimpleCard extends React.Component {
       <Card className="card">
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" align="left">
-            User {this.props.no}
+            Opponent {this.props.no}
           </Typography>
           <Typography component="p" align="left">
-            Cheat: {this.props.data[this.props.id] === undefined ? 0 : this.props.data[this.props.id].cheat}
+            Pass: {this.props.data[this.props.id] === undefined ? 0 : this.props.data[this.props.id].data[0]}
           </Typography>
           <Typography component="p" align="left">
-            Co-operate: {this.props.data[this.props.id] === undefined ? 0 : this.props.data[this.props.id].cooperate}
+            +1: {this.props.data[this.props.id] === undefined ? 0 : this.props.data[this.props.id].data[1]}
+          </Typography>
+          <Typography component="p" align="left">
+            +2: {this.props.data[this.props.id] === undefined ? 0 : this.props.data[this.props.id].data[2]}
+          </Typography>
+          <Typography component="p" align="left">
+            +3: {this.props.data[this.props.id] === undefined ? 0 : this.props.data[this.props.id].data[3]}
           </Typography>
           {this.state.request ?
             (
               <div>
                 <Typography component="p"></Typography>
                 <Typography component="p" align="left" color="primary" variant="body2">
-                  User has sent you a trade request
+                  Opponent has attacked you
                 </Typography>
               </div>) :
             false
@@ -123,7 +133,7 @@ class SimpleCard extends React.Component {
           (
             <CardContent>
               <Typography component="footer" align="left" color="primary">
-                Trade request sent
+                Opponent attacked
               </Typography>
               <Typography component="footer" align="left" color="primary">
                 Waiting for response
@@ -135,19 +145,25 @@ class SimpleCard extends React.Component {
             {this.state.engage ? (
               <div>
                 <Button size="small" color="secondary" onClick={this.flipState.bind(this, 0)}>
-                  Cheat
+                  Pass
                   </Button>
                 <Button size="small" color="secondary" onClick={this.flipState.bind(this, 1)}>
-                  Co-operate
+                  +1
+                  </Button>
+                <Button size="small" color="secondary" onClick={this.flipState.bind(this, 2)}>
+                  +2
+                  </Button>
+                <Button size="small" color="secondary" onClick={this.flipState.bind(this, 3)}>
+                  +3
                   </Button>
               </div>) : (
                 <Button size="small" color="secondary" onClick={this.flipState.bind(this, -1)}>
-                  Trade
+                  Engage War
                   </Button>)}
           </CardActions>) : (
             <CardContent>
               <Typography component="footer" align="left" color="primary">
-                Cant trade more than 5 times
+                Cant battle more than 5 times
             </Typography>
             </CardContent>
           )

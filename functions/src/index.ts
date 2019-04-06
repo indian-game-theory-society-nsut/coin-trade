@@ -23,12 +23,12 @@ export const onUserCreate = functions.auth.user()
         transaction.update(userCount, { count: newCount });
         return newCount;
       }).then((newCount) => {
-        const temp = (newCount - 1) % 6;
+        let temp = (newCount - 1) % 5;
         console.log("Success");
         return userData.set({
           email: user.email,
           no: newCount,
-          coins: 50,
+          coins: 0,
           data: [0, 0, 0, 0],
           room_id: temp,
           name: user.displayName
@@ -67,8 +67,8 @@ export const transact = functions.firestore.document('tokens/{tokenId}')
       return;
     const c = sender.val * 4 + replier.val;
     console.log(c);
-    const sendermap = [0, 0, 0, 0, 0, 0, -1, -1, 0, 1, 0, -1, 0, 1, 1, 0];
-    const receivermap = [0, 0, 0, 0, 0, 0, 1, 1, 0, -1, 0, 1, 0, -1, -1, 0];
+    const sendermap = [0, 0, 0, 0, 0, 0, -10, -10, 0, 10, 0, -10, 0, 10, 10, 0];
+    const receivermap = [0, 0, 0, 0, 0, 0, 10, 10, 0, -10, 0, 10, 0, -10, -10, 0];
     return token.delete()
       .then(() => {
         return db.runTransaction(transaction => {
@@ -91,7 +91,7 @@ export const transact = functions.firestore.document('tokens/{tokenId}')
             return transaction.get(user2).then((user) => {
               const userVal = user.data();
               let newCoins = userVal!.coins;
-              let userData = userVal![replier.user_id];
+              let userData = userVal![sender.user_id];
               let data = userVal!.data;
               if (userData === undefined) {
                 userData = { data: [0, 0, 0, 0] };
@@ -99,7 +99,7 @@ export const transact = functions.firestore.document('tokens/{tokenId}')
               userData.data[sender.val] += 1;
               data[replier.val] += 1;
               newCoins += receivermap[c];
-              let temp = { coins: newCoins, [replier.user_id]: userData, data: data };
+              let temp = { coins: newCoins, [sender.user_id]: userData, data: data };
               return transaction.update(user2, temp);
             })
           })

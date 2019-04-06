@@ -11,7 +11,7 @@ class Register extends React.Component {
   }
 
   componentDidMount() {
-    const countDownDate = new Date("Apr 7, 2019, 17:57:01").getTime();
+    const countDownDate = new Date("Apr 7, 2019, 18:00:01").getTime();
     this.countDown = setInterval(() => {
       let now = new Date().getTime();
       let distance = countDownDate - now;
@@ -41,7 +41,7 @@ class Register extends React.Component {
         <div className="register">
           Registration Over
         </div>
-        Rules for the event are available <a href="https://drive.google.com/open?id=1sieaZBGtsu2t7awNLo5PsuNP2litJyk9" target="_blank">here</a>
+        Rules for the event are available <a href="https://drive.google.com/file/d/1pBnBeu_AGOclwVVeBEc-8B7nZzUlM6MJ/view?usp=sharing" target="_blank">here</a>
       </div>
     )
   }

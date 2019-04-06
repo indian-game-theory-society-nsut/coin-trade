@@ -34,7 +34,7 @@ class Register extends React.Component {
   }
 
   componentDidMount() {
-    const countDownDate = new Date("Apr 7, 2019, 17:55:01").getTime();
+    const countDownDate = new Date("Apr 7, 2019, 17:35:01").getTime();
     this.countDown = setInterval(() => {
       let now = new Date().getTime();
       let distance = countDownDate - now;
